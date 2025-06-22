@@ -70,8 +70,22 @@ namespace Collection
         }
 
         void StackOperations<T>(Stack<T> stack)
+            where T : notnull
         {
+            if (typeof(T) == typeof(DateTime))
+            {
+                if (stack.Count > 0)
+                {
+                    DateTime currentTime = DateTime.Now;
+                    T top = stack.Peek();
 
+                    if ((DateTime)(object)top < currentTime)
+                    {
+                        stack.Pop();
+                        stack.Push((T)(object)currentTime);
+                    }
+                }
+            }
         }
     }
 
