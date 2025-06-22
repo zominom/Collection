@@ -51,8 +51,22 @@ namespace Collection
         }
 
         void DictionaryOperations<T, X>(Dictionary<T, X> dictionary)
+            where T : notnull
+            where X : IComparable<int>
         {
+            const string KEY_TO_FIND = "scuba";
+            const string KEY_TO_ADD = "dive";
 
+            if (typeof(T) == typeof(string) && typeof(X) == typeof(int))
+            {
+                T keyToFind = (T)(object)KEY_TO_FIND;
+                T keyToAdd = (T)(object)KEY_TO_ADD;
+
+                if (dictionary.ContainsKey(keyToFind) && dictionary[keyToFind].CompareTo(6) == 0)
+                {
+                    dictionary[keyToAdd] = (X)(object)6;
+                }
+            }
         }
 
         void StackOperations<T>(Stack<T> stack)
